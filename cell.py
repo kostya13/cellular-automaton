@@ -5,6 +5,7 @@ WIDTH = 140
 LIFE_TIME = 100
 DOT = '█'
 SPACE = ' '
+
 ID = 30
 
 
@@ -18,7 +19,7 @@ def make_mapping(map_id):
 
 
 def middle(width):
-    line = [0] * WIDTH
+    line = [0] * width
     mid = len(line) // 2
     line[mid] = 1
     return line
@@ -36,16 +37,15 @@ def draw(line):
 def iter_state(field):
     f_len = len(field)
     for i in range(f_len):
-        left = (i-1) % f_len
+        left = (i - 1) % f_len
         midlle = i
-        right = (i+1) % f_len
+        right = (i + 1) % f_len
         values = (field[i] for i in (left, midlle, right))
-        key= '{}{}{}'.format(*values)
-        yield  key
+        yield '{}{}{}'.format(*values)
 
 
 def new_generation(gen_map, field): 
-    return [gen_map[state] for state in iter_state(field[:])]
+    return [gen_map[state] for state in iter_state(field)]
 
         
 def run():
